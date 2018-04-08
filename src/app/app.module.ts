@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { VendorPage } from '../pages/vendor/vendor';
 import { SettingsPage } from '../pages/settings/settings';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -17,12 +17,14 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
+    VendorPage,
     SettingsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      menuType: 'overlay'
+    }),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule
   ],
@@ -30,7 +32,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
+    VendorPage,
     SettingsPage
   ],
   providers: [
