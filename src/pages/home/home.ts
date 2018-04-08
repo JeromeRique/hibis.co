@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
-import {AngularFireAuth} from 'angularfire2/auth'
+import { AngularFireAuth } from 'angularfire2/auth'
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
