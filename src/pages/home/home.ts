@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth'
-import { InstagramPage } from '../instagram/instagram';
 
 @Component({
   selector: 'page-home',
