@@ -21,7 +21,7 @@
   </ion-slides>
   <!-- End Slide-->
 
-  <div style="text-align:center;">
+  <div style="text-align:justified;">
     <p>Enjoy the ambience of the lush Santa Cruz Valley. 
       Taste and savour delicious local food. Meet the 
       people who grow your food as well as your friends 
@@ -30,10 +30,10 @@
     <p>Improve your quality of life.</p>
   </div>
   
-  <button ion-button full round color="primary">Learn More</button>
+  <button ion-button full round color="primary" (click)="navCtrl.push('AboutPage')">Learn More</button>
   
   <!-- Slider 2 -->
-  <ion-slides pager="true">
+  <ion-slides full pager="true">
     <ion-slide *ngFor = "let slide of slider">
       <ion-card>
         <img [src]="slide.img" alt="slide.desc">

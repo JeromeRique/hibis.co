@@ -18,11 +18,11 @@ export class HomePage {
     {
       title:'Slide1',
       desc:'We got some text, fam.',
-      img: 'assets/imgs/logo.png'
+      img: 'assets/imgs/onion.jpg'
     }, {
       title: 'Slide2',
       desc:'Getting old...',
-      img: 'assets/imgs/logo.png'
+      img: 'assets/imgs/lettuce.jpg'
     }
   ];
 
