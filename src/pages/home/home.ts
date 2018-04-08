@@ -21,7 +21,9 @@ export class HomePage {
       desc:'Getting old...',
       img: 'assets/imgs/logo.png'
     }
-  ]
+  ];
+
+  infoSlide = [];
   ionViewWillLoad(){
     this.afAuth.authState.subscribe(data => {
       if(data && data.email && data.uid){

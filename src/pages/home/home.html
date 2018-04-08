@@ -8,6 +8,8 @@
 </ion-header>
 
 <ion-content padding="true" class="has-header">
+
+  <!-- Slider 1 -->
   <ion-slides pager="true">
     <ion-slide *ngFor = "let slide of slider">
       <img [src]="slide.img" alt="slide.desc">
@@ -22,6 +24,7 @@
   
   <button ion-button full round color="primary">Learn More</button>
   
+  <!-- Slider 2 -->
   <ion-slides pager="true">
     <ion-slide *ngFor = "let slide of slider">
       <img [src]="slide.img" alt="slide.desc">
