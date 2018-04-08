@@ -28,13 +28,13 @@ export class HomePage {
     this.afAuth.authState.subscribe(data => {
       if(data && data.email && data.uid){
         this.toast.create({
-          message: `Welcome to Hibis.co, ${data.email}`,
+          message: `Welcome to Hibis.co, ${data.email}.`,
           duration: 3000
         }).present();
       }
       else{
         this.toast.create({
-          message: `Could not authenticate user`,
+          message: `Could not authenticate user.`,
           duration: 3000
         }).present();
       }
