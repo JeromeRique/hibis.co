@@ -10,6 +10,18 @@ export class HomePage {
   constructor(private afAuth: AngularFireAuth, private toast: ToastController, public navCtrl: NavController) {
 
   }
+
+  slider = [
+    {
+      title:'Slide1',
+      desc:'We got some text, fam.',
+      img: 'assets/imgs/logo.png'
+    }, {
+      title: 'Slide2',
+      desc:'Getting old...',
+      img: 'assets/imgs/logo.png'
+    }
+  ]
   ionViewWillLoad(){
     this.afAuth.authState.subscribe(data => {
       if(data && data.email && data.uid){

@@ -7,12 +7,39 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <!-- <h3>Ionic Menu Starter</h3>
+<ion-content padding="true" class="has-header">
+  <ion-slides pager="true">
+    <ion-slide *ngFor = "let slide of slider">
+      <img [src]="slide.img" alt="slide.desc">
+    </ion-slide>
+  </ion-slides>
+  
+  <div id="home-markdown1" style="text-align:center;" class="show-list-numbers-and-dots">
+    <p style="color:#000000;">Enjoy the ambience of the lush Santa Cruz Valley. Taste and savour delicious local food. Meet the people who grow your food as well as your friends and family. Experience the creativity of local artisans. </p>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button> -->
+    <p style="color:#000000;">Improve your quality of life.</p>
+  </div>
+  
+  <button ion-button full round color="primary">Learn More</button>
+  
+  <ion-slides pager="true">
+    <ion-slide *ngFor = "let slide of slider">
+      <img [src]="slide.img" alt="slide.desc">
+      <h2 [innerHTML]="slide.title"></h2>
+      <p [innerHTML]="slide.desc"></p>
+    </ion-slide>
+  </ion-slides>
+  
+  <div id="home-markdown2" style="text-align:center;" class="show-list-numbers-and-dots">
+    <p style="color:#000000;">Some Caribbean quotes.</p>
+  
+  </div>
+  
+  <button ion-button color="primary">
+    <ion-icon name="instagram"></ion-icon>
+  </button>
 </ion-content>
+
+<!--
+<button ion-button secondary menuToggle>Toggle Menu</button>
+-->
