@@ -5,27 +5,23 @@
     </button>
     <ion-title>Vendors</ion-title>
   </ion-navbar>
-  <ion-toolbar>
+  <!-- <ion-toolbar>
     <ion-searchbar placeholder="Search"
       [(ngModel)]="queryVendor"
       (ionInput)="updateVendors()">
 
 
     </ion-searchbar>
-  </ion-toolbar>
+  </ion-toolbar> -->
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let vendor of vendors" (click)="itemTapped($event, item)">
-      <ion-icon [name]="vendor.icon" item-start></ion-icon>
-      {{vendor.title}}
+    <button ion-item *ngFor="let t of temp" (click)="itemTapped($event, item)">
+      {{t.email}}
       <div class="item-note" item-end>
-        {{vendor.note}}
+        {{t.type}}
       </div>
     </button>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
 </ion-content>
