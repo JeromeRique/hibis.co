@@ -7,12 +7,14 @@ import { HomePage } from '../pages/home/home';
 import { VendorPage } from '../pages/vendor/vendor';
 import { SettingsPage } from '../pages/settings/settings';
 
+// import { VideoPlayer } from '@ionic-native/video-player';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import {AngularFireModule} from 'angularfire2';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 @NgModule({
   declarations: [
     MyApp,
@@ -26,7 +28,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
       menuType: 'overlay'
     }),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,6 +41,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
   providers: [
     StatusBar,
     SplashScreen,
+    // VideoPlayer,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
