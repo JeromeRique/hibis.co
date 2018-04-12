@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { User } from '../../models/User/User';
 import { AngularFireAuth } from 'angularfire2/auth';
+
+import { User } from '../../models/User/User';
+import { Vendor } from '../../models/User/Vendor';
 
 @Component({
   selector: 'page-vendor',
@@ -13,7 +15,7 @@ export class VendorPage {
   icons: string[];
   vendors: Array<{title: string, note: string, icon: string}>;
   queryVendor: string;
-  temp: Array<{email: string, type: string}>
+  temp: Array<Vendor>
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private afdb: AngularFireDatabase, private afAuth: AngularFireAuth) {
@@ -39,18 +41,18 @@ export class VendorPage {
   }
 
   populateVendors() {
-    let ref = this.afdb.database.ref().child('users');
+    let ref = this.afdb.database.ref().child('vendors');
     this.temp = []
     ref.on('child_added', snap => {
-      let vemail = snap.child('email').val();
-      let vtype = snap.child('type').val();
-      this.temp.push({
-        email: vemail+'',
-        type: vtype+''
-      });
+      let v = snap.val();
+      let iV = new Vendor(
+        v['email'],
+        v['name'],
+        v['owner'],
+        v['phone']
+      )
+      this.temp.push(iV);
     });
-
-    console.log(this.temp)
   }
 
   itemTapped(event, vendor) {

@@ -17,11 +17,11 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let t of temp" (click)="itemTapped($event, item)">
-      {{t.email}}
-      <div class="item-note" item-end>
-        {{t.type}}
-      </div>
-    </button>
+      <button ion-item *ngFor="let t of temp" (click)="itemTapped($event, item)">
+        {{t.v_name}}
+        <div class="item-note" item-end>
+          {{t.o_name}}
+        </div>
+      </button>
   </ion-list>
 </ion-content>

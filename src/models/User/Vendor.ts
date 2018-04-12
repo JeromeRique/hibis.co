@@ -6,10 +6,10 @@ export class Vendor extends User {
     phone: string;
     constructor(
         email: string, 
-        password: string,
         v_name: string,
         o_name: string,
-        phone: string ) {
+        phone: string,
+        password?: string ) {
         super(email, password);
         this.v_name = v_name;
         this.o_name = o_name;
