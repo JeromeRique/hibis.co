@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Vendors</ion-title>
+  </ion-navbar>
+  <!-- <ion-toolbar>
+    <ion-searchbar placeholder="Search"
+      [(ngModel)]="queryVendor"
+      (ionInput)="updateVendors()">
+
+
+    </ion-searchbar>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let t of temp" (click)="itemTapped($event, item)">
+      {{t.email}}
+      <div class="item-note" item-end>
+        {{t.type}}
+      </div>
+    </button>
+  </ion-list>
+</ion-content>

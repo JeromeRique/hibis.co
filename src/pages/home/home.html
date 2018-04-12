@@ -7,8 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding="true" class="has-header">
-
+<ion-content padding class="has-header">
   <!-- Slider 1 -->
   <ion-slides pager="true">
     <ion-slide *ngFor = "let slide of slider">
@@ -19,8 +18,9 @@
       </ion-card>
     </ion-slide>
   </ion-slides>
-  
-  <div id="home-markdown1" style="text-align:center;" class="show-list-numbers-and-dots">
+  <!-- End Slide-->
+
+  <div style="text-align:justified;">
     <p>Enjoy the ambience of the lush Santa Cruz Valley. 
       Taste and savour delicious local food. Meet the 
       people who grow your food as well as your friends 
@@ -29,10 +29,10 @@
     <p>Improve your quality of life.</p>
   </div>
   
-  <button ion-button full round color="primary">Learn More</button>
+  <button ion-button full round color="primary" (click)="navCtrl.push('AboutPage')">Learn More</button>
   
   <!-- Slider 2 -->
-  <ion-slides pager="true">
+  <ion-slides full pager="true">
     <ion-slide *ngFor = "let slide of slider">
       <ion-card>
         <img [src]="slide.img" alt="slide.desc">
@@ -41,15 +41,21 @@
       </ion-card>
     </ion-slide>
   </ion-slides>
+  <!-- End Slide-->
   
-  <div id="home-markdown2" style="text-align:center;" class="show-list-numbers-and-dots">
+  <div style="text-align:center;">
     <p>Some Caribbean Quotes.</p>
-  
   </div>
   
-  <button ion-button color="primary">
-    <ion-icon name="instagram"></ion-icon>
-  </button>
+  <div text-center>
+    <button ion-button color="primary" (click)="navCtrl.push('InstagramPage')">
+      <ion-icon name="logo-instagram"></ion-icon>
+    </button>
+    <button ion-button color="secondary" (click)="navCtrl.push('ContactPage')">
+      <ion-icon name="call"></ion-icon>
+    </button>
+  </div>
+  
 </ion-content>
 
 <!-- Comment

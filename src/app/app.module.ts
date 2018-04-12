@@ -4,38 +4,46 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { VendorPage } from '../pages/vendor/vendor';
 import { SettingsPage } from '../pages/settings/settings';
 
+// import { VideoPlayer } from '@ionic-native/video-player';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import {AngularFireModule} from 'angularfire2';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { FirebaseUserAuth } from '../models/FirebaseUserAuth';
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
+    VendorPage,
     SettingsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      menuType: 'overlay'
+    }),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
+    VendorPage,
     SettingsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    FirebaseUserAuth,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
