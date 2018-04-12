@@ -16,13 +16,15 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FirebaseUserAuth } from '../models/FirebaseUserAuth';
+import { VendorDetailsPage } from '../pages/vendor-details/vendor-details';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     VendorPage,
-    SettingsPage
+    SettingsPage,
+    VendorDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { FirebaseUserAuth } from '../models/FirebaseUserAuth';
     MyApp,
     HomePage,
     VendorPage,
-    SettingsPage
+    SettingsPage,
+    VendorDetailsPage
   ],
   providers: [
     StatusBar,

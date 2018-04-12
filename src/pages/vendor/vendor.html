@@ -17,7 +17,7 @@
 
 <ion-content>
   <ion-list>
-      <button ion-item *ngFor="let t of temp" (click)="itemTapped($event, item)">
+      <button ion-item *ngFor="let t of temp" (click)="itemTapped($event, t)">
         {{t.v_name}}
         <div class="item-note" item-end>
           {{t.o_name}}

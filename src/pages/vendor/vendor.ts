@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { User } from '../../models/User/User';
 import { Vendor } from '../../models/User/Vendor';
+import { VendorDetailsPage } from '../vendor-details/vendor-details';
 
 @Component({
   selector: 'page-vendor',
@@ -56,8 +57,8 @@ export class VendorPage {
   }
 
   itemTapped(event, vendor) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(VendorPage, {
+    
+    this.navCtrl.push(VendorDetailsPage, {
       vendor: vendor
     });
   }
