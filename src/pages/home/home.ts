@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth'
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -8,7 +9,8 @@ import { AngularFireAuth } from 'angularfire2/auth'
 })
 export class HomePage {
 
-  constructor(private afAuth: AngularFireAuth, 
+  constructor(
+    private afAuth: AngularFireAuth, 
     private toast: ToastController, 
     public navCtrl: NavController) {
 
@@ -41,6 +43,7 @@ export class HomePage {
           message: `Could not authenticate user.`,
           duration: 3000
         }).present();
+        this.navCtrl.setRoot(LoginPage)
       }
     });
   }

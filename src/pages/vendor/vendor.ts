@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
-import { User } from '../../models/user';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { User } from '../../models/User/User';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
@@ -14,8 +14,6 @@ export class VendorPage {
   vendors: Array<{title: string, note: string, icon: string}>;
   queryVendor: string;
   temp: Array<{email: string, type: string}>
-
-  userData: FirebaseObjectObservable<User>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private afdb: AngularFireDatabase, private afAuth: AngularFireAuth) {
