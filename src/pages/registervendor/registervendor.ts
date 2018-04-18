@@ -28,22 +28,20 @@ export class RegistervendorPage {
   private password2: string;
 
   user = {} as User;
-  constructor (
+  constructor(
     private auth: FirebaseUserAuth,
     private toast: ToastController,
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams) {
 
   }
 
-  async register(user: User) {
+  register(user: User) {
     if (this.password1 === this.password2) {
-      user = new Vendor(this.email, this.password1, this.name, this.owner, this.phone);
-      console.log(user);
+      user = new Vendor(this.email, this.name, this.owner, this.phone, this.password1);
       this.auth.register(user);
     } else {
-       // Present error notification to Vendor
-       this.toast.create({
+      this.toast.create({
         message: 'Try again. Your password didn\'t seem to match',
         duration: 3000
       }).present();

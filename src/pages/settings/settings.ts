@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { CustomerSettingsPage } from '../customer-settings/customer-settings';
 
 /**
  * Generated class for the SettingsPage page.
@@ -20,6 +21,6 @@ export class SettingsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingsPage');
+    this.navCtrl.push(CustomerSettingsPage);
   }
 }

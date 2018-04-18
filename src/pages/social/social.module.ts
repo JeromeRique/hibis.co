@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { InstagramPage } from './instagram';
+import { SocialPage } from './social';
 
 @NgModule({
   declarations: [
-    InstagramPage,
+    SocialPage,
   ],
   imports: [
-    IonicPageModule.forChild(InstagramPage),
+    IonicPageModule.forChild(SocialPage),
   ],
 })
-export class InstagramPageModule {}
+export class SocialPageModule {}

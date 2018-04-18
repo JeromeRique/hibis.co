@@ -37,12 +37,18 @@ export class RegisterPage {
     if (this.password1 === this.password2) {
       user = new Customer(this.email, this.name, this.password1);
       console.log((user));
-      this.auth.register(user);
-      // Display success to Customer
-      this.toast.create({
-        message: 'Your account has been registered! Log in.',
-        duration: 5000
-      }).present();
+      try {
+        let result = this.auth.register(user);
+        this.toast.create({
+          message: 'Your account has been registered! Log in.',
+          duration: 5000
+        }).present();
+      } catch (e) {
+        this.toast.create({
+          message: 'There was an error registering, please try again.',
+          duration: 1500
+        }).present();
+      }
     } else {
       // Present error notification to Customer
       this.toast.create({

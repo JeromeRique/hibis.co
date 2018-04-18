@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the LoginPage page.
@@ -10,6 +10,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/User/User';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
+import { FirebaseUserAuth } from '../../models/FirebaseUserAuth';
+import { Storage } from '@ionic/storage'
+import { Vendor } from '../../models/User/Vendor';
+import { Customer } from '../../models/User/Customer';
 
 @IonicPage()
 @Component({
@@ -17,19 +21,31 @@ import { HomePage } from '../home/home';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  private email: string;
+  private password: string;
 
   user ={} as User;
-  constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+
+  constructor(
+    private auth: FirebaseUserAuth,
+    private toast: ToastController,
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
   }
-  async login(user: User){
-    try{
-      const result = this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
-      if(result){
-        this.navCtrl.setRoot(HomePage);
-      }
-    }
-    catch(e){
-      console.error(e);
+  login(user:User) {
+    user = new User (this.email, this.password)
+    try { 
+      let result = this.auth.login(user);
+      if (result) {
+        this.navCtrl.setRoot(HomePage)
+      } else {
+        this.toast.create({
+          message: 'Could not authenticate.',
+          duration: 3000
+        }).present();
+      }  
+    } catch (e) {
+
     }
   }
   register(){

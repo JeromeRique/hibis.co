@@ -1,0 +1,40 @@
+<!--
+  Generated template for the CustomerSettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='primary'>
+    <ion-title>Settings (C)</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <form (submit)="updateSettings()">
+    <ion-list>
+      
+      <ion-item>
+        <ion-label floating>Update Full Name</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Update Email</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Update Password</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item color='danger'>
+        <button ion-button full color='light'>Delete Account</button>
+      </ion-item>
+      <ion-item>
+        <button ion-button full color='primary'>Update</button>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>

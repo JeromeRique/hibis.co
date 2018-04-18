@@ -10,13 +10,15 @@ import { SettingsPage } from '../pages/settings/settings';
 // import { VideoPlayer } from '@ionic-native/video-player';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { IonicStorageModule } from '@ionic/storage';
 import {AngularFireModule} from 'angularfire2';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FirebaseUserAuth } from '../models/FirebaseUserAuth';
 import { VendorDetailsPage } from '../pages/vendor-details/vendor-details';
+import { CustomerSettingsPage } from '../pages/customer-settings/customer-settings';
+import { VendorSettingsPage } from '../pages/vendor-settings/vendor-settings';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,16 @@ import { VendorDetailsPage } from '../pages/vendor-details/vendor-details';
     HomePage,
     VendorPage,
     SettingsPage,
-    VendorDetailsPage
+    VendorDetailsPage,
+    CustomerSettingsPage,
+    VendorSettingsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {
       menuType: 'overlay'
     }),
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     AngularFireDatabaseModule
@@ -41,7 +46,9 @@ import { VendorDetailsPage } from '../pages/vendor-details/vendor-details';
     HomePage,
     VendorPage,
     SettingsPage,
-    VendorDetailsPage
+    VendorDetailsPage,
+    CustomerSettingsPage,
+    VendorSettingsPage
   ],
   providers: [
     StatusBar,
