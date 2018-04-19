@@ -10,8 +10,8 @@ import { Storage } from '@ionic/storage';
 import { Customer } from '../models/User/Customer';
 import { Vendor } from '../models/User/Vendor';
 import { User } from '../models/User/User';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { CurrentUser } from '../models/CurrentUser';
+import { FirebaseUserAuth } from '../models/FirebaseUserAuth';
 import { CustomerSettingsPage } from '../pages/customer-settings/customer-settings';
 import { VendorSettingsPage } from '../pages/vendor-settings/vendor-settings';
 
@@ -27,13 +27,12 @@ export class MyApp {
   pages: Array<{ title: string, component: any }>;
 
   constructor(
-    private afAuth: AngularFireAuth,
-    private afdb: AngularFireDatabase,
+    private auth: FirebaseUserAuth,
     private toast: ToastController,
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public storage: Storage) {
+    public currUser: CurrentUser) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -61,26 +60,14 @@ export class MyApp {
       
     }
     else if (page.component == SettingsPage) {
-      try {
-        
-        let ref;
-        let email = this.afAuth.auth.currentUser.email;
-        console.log(email);
-        let type;
-        ref = this.afdb.database.ref('users');
-        ref.orderByChild('email').equalTo(email).on('child_added', snap => {
-            let s = snap.val();
-            type = s['type'];
-        });
-        if (type === 'Vendor') {
+
+        if (this.currUser.type === 'Vendor') {
           this.nav.push(SettingsPage)
-        } else if (type === 'Customer') {
+        } else if (this.currUser.type === 'Customer') {
          // this.nav.push(CustomerSettingsPage);
          this.nav.push(VendorSettingsPage);
         }
-      } catch (e) {
-          console.log(e);
-      }
+
     }
     else {
       this.nav.push(page.component);
@@ -88,12 +75,13 @@ export class MyApp {
   }
 
   logout() {
-    if (this.afAuth.auth!.currentUser != null) {
-       try {
-           this.afAuth.auth.signOut();
-       } catch (e) {
-            console.log("Error logging out: " + e);
-       }
+    try {
+      this.auth.logout();
+    } catch (e) {
+      this.toast.create({
+        message: 'Unable to log out',
+        duration: 1000
+      }).present();
     }
-}
+  }
 }

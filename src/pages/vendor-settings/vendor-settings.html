@@ -32,17 +32,13 @@
       <ion-item>
         <ion-label>
           Add Product
-          <button id="product-add" ion-button color="light">
-            <ion-icon color="primary" name="add"></ion-icon>
+          <button id="product-add" ion-button circle color="primary" (click)="openModal()">
+            <ion-icon  color="light" name="add"></ion-icon>
           </button>
         </ion-label>
-        
-          <!-- List of Products -->
-          
       </ion-item>
       <button ion-item *ngFor="let p of products">
         {{p.title}}
-        
       </button>
 
       <button ion-button type="submit" block >Save</button>

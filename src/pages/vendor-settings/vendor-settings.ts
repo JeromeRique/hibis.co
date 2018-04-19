@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
 
 /**
  * Generated class for the VendorSettingsPage page.
@@ -16,7 +16,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class VendorSettingsPage {
   products: Array<{title: string, category: string}>
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    private modal: ModalController,
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
   
   this.products =  [
     { title: 'None', category: 'None'},
@@ -30,6 +33,17 @@ export class VendorSettingsPage {
 
   updateSettings() {
     console.log("Not quite there...");
+  }
+
+  openModal() {
+    const prodmod = this.modal.create('AddProductPage', {products: this.products});
+    prodmod.present();
+
+    prodmod.onDidDismiss((p) => {
+      this.products.push(p.data);
+      console.log(p.data);
+      console.log('New product added.');
+    })
   }
 
 }

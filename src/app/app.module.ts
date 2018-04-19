@@ -19,6 +19,7 @@ import { FirebaseUserAuth } from '../models/FirebaseUserAuth';
 import { VendorDetailsPage } from '../pages/vendor-details/vendor-details';
 import { CustomerSettingsPage } from '../pages/customer-settings/customer-settings';
 import { VendorSettingsPage } from '../pages/vendor-settings/vendor-settings';
+import { CurrentUser } from '../models/CurrentUser';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { VendorSettingsPage } from '../pages/vendor-settings/vendor-settings';
     StatusBar,
     SplashScreen,
     FirebaseUserAuth,
+    CurrentUser,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

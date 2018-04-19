@@ -1,5 +1,6 @@
 import { AngularFireAuth } from "angularfire2/auth";
 import { AngularFireDatabase } from "angularfire2/database";
+import { CurrentUser } from '../models/CurrentUser'
 import { User } from './User/User';
 import { Vendor } from './User/Vendor'
 import { Customer } from './User/Customer'
@@ -15,19 +16,13 @@ export class FirebaseUserAuth {
     constructor(
         private afAuth: AngularFireAuth,
         private afdb: AngularFireDatabase,
-        public storage: Storage
+        public currUser: CurrentUser
     ) {
 
     }
 
     logout() {
-        if (this.afAuth.auth!.currentUser != null) {
-           try {
-               this.afAuth.auth.signOut();
-           } catch (e) {
-                console.log("Error logging out: " + e);
-           }
-        }
+        return this.afAuth.auth.signOut();
     }
 
     /**
@@ -37,14 +32,8 @@ export class FirebaseUserAuth {
      * @param user 
      */
     async login(user: User) {
-        try {
-            const result = await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
-            let uid = this.afAuth.auth.currentUser.uid;
-        }
-        catch (e) {
-            console.error(e);
-        }
-        return;
+        this.currUser.type = 'Customer';
+        return await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
     }
 
     
