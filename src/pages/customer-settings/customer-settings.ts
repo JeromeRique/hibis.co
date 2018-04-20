@@ -15,17 +15,37 @@ import { FirebaseUserAuth } from '../../models/FirebaseUserAuth';
   templateUrl: 'customer-settings.html',
 })
 export class CustomerSettingsPage {
-
+  user: {name: string, email: string, password: string};
   constructor(
     private auth: FirebaseUserAuth, 
     public navCtrl: NavController, 
     public navParams: NavParams) {
-      //
+      this.user = {
+        name: "",
+        email: "",
+        password: ""
+      };
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CustomerSettingsPage');
     //this.auth.current();
+  }
+
+  updateSettings () {
+    try {
+      this.auth.updateUserSettings(this.user);
+    } catch(e) {
+
+    }
+  }
+  
+  deleteAccount () {
+    try {
+      this.auth.deleteAccount();
+    } catch (e) {
+      console.log(e);
+    }
   }
 
 }

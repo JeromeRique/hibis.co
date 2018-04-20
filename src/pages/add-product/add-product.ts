@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController } from 'ionic-angular';
+import { FirebaseUserAuth } from '../../models/FirebaseUserAuth';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
  * Generated class for the AddProductPage page.
@@ -18,6 +21,9 @@ export class AddProductPage {
   
   category: string;
   constructor(
+    private afAuth: AngularFireAuth,
+    private afdb: AngularFireDatabase,
+    private toast: ToastController,
     public navParams: NavParams,
     public viewCtrl: ViewController) {
       this.product = {
@@ -27,7 +33,7 @@ export class AddProductPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddProductPage');
+
   }
 
   closeModal (data=null) {
@@ -38,6 +44,18 @@ export class AddProductPage {
   }
 
   add () {
+    try {
+      let uid = this.afAuth.auth.currentUser.uid;
+      let ref = this.afdb.database.ref('products/'+uid).push().set({
+        name: this.product.title,
+        category: this.product.category
+      });
+    } catch (e) {
+      this.toast.create({
+        message: 'Could not create product',
+        duration: 1000
+      }).present();
+    }
     this.closeModal(this.product);
   }
 

@@ -34,18 +34,17 @@ export class LoginPage {
   }
   login(user:User) {
     user = new User (this.email, this.password)
+    let result;
     try { 
-      let result = this.auth.login(user);
-      if (result) {
-        this.navCtrl.setRoot(HomePage)
-      } else {
-        this.toast.create({
-          message: 'Could not authenticate.',
-          duration: 3000
-        }).present();
-      }  
+      result = this.auth.login(user);
     } catch (e) {
-
+      this.toast.create({
+        message: 'Could not authenticate.',
+        duration: 3000
+      }).present();
+    }
+    if (result) {
+      this.navCtrl.setRoot(HomePage)
     }
   }
   register(){

@@ -37,12 +37,26 @@ export class RegistervendorPage {
   }
 
   register(user: User) {
+    let result;
     if (this.password1 === this.password2) {
       user = new Vendor(this.email, this.name, this.owner, this.phone, this.password1);
-      this.auth.register(user);
+      try {
+        result = this.auth.register(user);
+      } catch (e) {
+        this.toast.create({
+          message: 'There was an error registering.',
+          duration: 3000
+        }).present();
+      }
     } else {
       this.toast.create({
         message: 'Try again. Your password didn\'t seem to match',
+        duration: 3000
+      }).present();
+    }
+    if (result) {
+      this.toast.create({
+        message: 'You have successfully registered as a vendor.',
         duration: 3000
       }).present();
     }

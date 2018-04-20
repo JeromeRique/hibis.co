@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * Generated class for the VendorDetailsPage page.
@@ -15,14 +16,51 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class VendorDetailsPage {
   vendor: any;
+  products: any;
+  display_pic: string;
+  icon: string[];
+
   constructor(
-    public navCtrl: NavController, 
+    private afdb: AngularFireDatabase,
+    public navCtrl: NavController,
     public navParams: NavParams) {
+    //
+    this.products = [];
+    this.icon = ['flame', 'leaf', 'cart'];
+    this.display_pic = 'assets/imgs/lettuce.jpg';
     this.vendor = navParams.get('vendor');
+    this.populateProducts();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VendorDetailsPage');
+  }
+
+  populateProducts() {
+    try {
+      let ref = this.afdb.database.ref('products/' + this.vendor.key);
+      ref.on('child_added', snap => {
+        let p = {
+          title: snap.val().name,
+          category: snap.val().category,
+          icon: this.getIcon(snap.val().category)
+        };
+        this.products.push(p);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  getIcon(category: string) {
+    category = category.toLowerCase();
+    if (category === 'food') {
+      return this.icon[0];
+    } else if (category === 'produce') {
+      return this.icon[1];
+    } else {
+      return this.icon[2];
+    }
   }
 
 }

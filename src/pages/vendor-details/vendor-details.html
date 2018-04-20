@@ -7,12 +7,23 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{vendor.v_name}}</ion-title>
+    <ion-title>{{vendor.title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <p>{{vendor.email}}</p>
+<ion-content text-center>
+  <ion-img width="100%" height="100px" [src]="display_pic"></ion-img>
+  <h1>{{vendor.owner}}</h1>
+  <ion-list>
+    <ion-item>
+      <h3>Products</h3>
+    </ion-item>
+    <ion-item *ngFor="let p of products">
+      {{p.title}}
+      <ion-icon [name]="p.icon" item-end></ion-icon>
+      <p>{{p.category}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

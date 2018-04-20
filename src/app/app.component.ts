@@ -61,11 +61,10 @@ export class MyApp {
     }
     else if (page.component == SettingsPage) {
 
-        if (this.currUser.type === 'Vendor') {
-          this.nav.push(SettingsPage)
-        } else if (this.currUser.type === 'Customer') {
-         // this.nav.push(CustomerSettingsPage);
-         this.nav.push(VendorSettingsPage);
+        if (this.currUser.type === 'Customer') {
+          this.nav.push(CustomerSettingsPage)
+        } else if (this.currUser.type === 'Vendor') {
+          this.nav.push(VendorSettingsPage);
         }
 
     }

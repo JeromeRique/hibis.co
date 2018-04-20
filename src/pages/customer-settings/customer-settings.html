@@ -19,22 +19,26 @@
       
       <ion-item>
         <ion-label floating>Update Full Name</ion-label>
-        <ion-input></ion-input>
+        <ion-input name="fullname" [(ngModel)]="user.name"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Update Email</ion-label>
-        <ion-input></ion-input>
+        <ion-input name="email" [(ngModel)]="user.email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Update Password</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-      <ion-item color='danger'>
-        <button ion-button full color='light'>Delete Account</button>
-      </ion-item>
-      <ion-item>
-        <button ion-button full color='primary'>Update</button>
+        <ion-input name="password" [(ngModel)]="user.password"></ion-input>
       </ion-item>
     </ion-list>
+    <ion-footer>
+      <ion-list>
+        <ion-item color='danger'>
+          <button ion-button full color='light' (click)="deleteAccount()">Delete Account</button>
+        </ion-item>
+        <ion-item>
+          <button ion-button large full color='primary'>Update</button>
+        </ion-item>
+      </ion-list>
+    </ion-footer>
   </form>
 </ion-content>

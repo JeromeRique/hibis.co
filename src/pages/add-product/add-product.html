@@ -21,14 +21,14 @@
     <ion-list>
       <ion-label >Product Name</ion-label>
       <ion-item>
-        <ion-input id="product-name" name="title" [(ngModel)]="product.title" placeholder="Apples"></ion-input>
+        <ion-input name="title" [(ngModel)]="product.title" placeholder="Apples"></ion-input>
       </ion-item>
       <ion-label >Product Category</ion-label>
       <ion-item>
-        <ion-select id="product-cat" [(ngModel)]="product.category" name="category" default="produce">
-          <ion-option value="produce" ng-selected="true">Produce</ion-option>
-          <ion-option value="food">Foodies</ion-option>
-          <ion-option value="news">Artisan Craft</ion-option>
+        <ion-select name="category" [(ngModel)]="product.category">
+          <ion-option value="Produce">Produce</ion-option>
+          <ion-option value="Foodies">Foodies</ion-option>
+          <ion-option value="Craft">Artisan Craft</ion-option>
         </ion-select>
       </ion-item>
     </ion-list>

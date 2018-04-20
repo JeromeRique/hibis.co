@@ -14,27 +14,22 @@ import { VendorDetailsPage } from '../vendor-details/vendor-details';
 export class VendorPage {
   selectedVendor: any;
   icons: string[];
-  vendors: Array<{title: string, note: string, icon: string}>;
+  vendors: Array<{ title: string, owner: string, categories: any, obj: any, key: any }>;
   queryVendor: string;
   temp: Array<Vendor>
+  icon: string[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    private afdb: AngularFireDatabase, private afAuth: AngularFireAuth) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private afdb: AngularFireDatabase,
+    private afAuth: AngularFireAuth) {
+
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedVendor = navParams.get('vendor');
-
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
-
+    this.icon = ['flame', 'leaf', 'cart'];
     this.vendors = [];
-    for (let i = 1; i < 11; i++) {
-      this.vendors.push({
-        title: 'Vendor ' + i,
-        note: 'This is vendor #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+
   }
 
   ionViewDidLoad() {
@@ -42,25 +37,58 @@ export class VendorPage {
   }
 
   populateVendors() {
-    let ref = this.afdb.database.ref().child('vendors');
+    let ref = this.afdb.database.ref().child('users');
     this.temp = []
     ref.on('child_added', snap => {
-      let v = snap.val();
-      let iV = new Vendor(
-        v['email'],
-        v['name'],
-        v['owner'],
-        v['phone']
-      )
-      this.temp.push(iV);
+      if (snap.val().type == 'Vendor') {
+        this.vendors.push({
+          title: snap.val().name,
+          owner: snap.val().owner,
+          categories: this.getCategories(snap.key),
+          obj: snap.val(),
+          key: snap.key
+        });
+      }
     });
   }
 
+  getCategories(key) {
+    let categories = [];
+    try {
+      let ref = this.afdb.database.ref('products/' + key);
+      ref.on('child_added', snap => {
+        let p = {
+          title: snap.val().name,
+          category: snap.val().category
+        }
+        categories.push(p);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
+    categories.map((e) => {
+      return this.getIcon(e.category);
+    });
+
+    return categories;
+  }
+
   itemTapped(event, vendor) {
-    
     this.navCtrl.push(VendorDetailsPage, {
       vendor: vendor
     });
+  }
+
+  getIcon(category: string) {
+    category = category.toLowerCase();
+    if (category === 'food') {
+      return this.icon[0];
+    } else if (category === 'produce') {
+      return this.icon[1];
+    } else {
+      return this.icon[2];
+    }
   }
 
   // updateVendors() {
