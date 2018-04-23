@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { FirebaseUserAuth } from '../../models/FirebaseUserAuth';
 
 /**
  * Generated class for the VendorDetailsPage page.
@@ -23,6 +25,8 @@ export class VendorDetailsPage {
   constructor(
     private afdb: AngularFireDatabase,
     public navCtrl: NavController,
+    public firebaseAuth: FirebaseUserAuth,
+    public afauth: AngularFireAuth,
     public navParams: NavParams) {
     //
     this.products = [];
@@ -62,5 +66,17 @@ export class VendorDetailsPage {
       return this.icon[2];
     }
   }
+  favorite(){
+    console.log(this.vendor);
+    // let vendorData = {
+    //   "vendor": this.vendor
+    // }
+    this.firebaseAuth.checkAuth().subscribe((data)=>{
+      if (data!= null){
+        let ref = this.afdb.list('favorites/'+ data.uid +'/');
+        ref.set("vendor", this.vendor);
+      }
+    })
 
+  }
 }

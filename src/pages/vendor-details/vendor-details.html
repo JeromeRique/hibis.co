@@ -15,7 +15,7 @@
 
 <ion-content text-center>
   <ion-img width="100%" height="100px" [src]="display_pic"></ion-img>
-  <h1>{{vendor.owner}}</h1>
+  <h1>{{vendor.owner}}</h1><button (click)="favorite()"><ion-icon ios="ios-star-outline" md="md-star-outline"></ion-icon></button>
   <ion-list>
     <ion-item>
       <h3>Products</h3>

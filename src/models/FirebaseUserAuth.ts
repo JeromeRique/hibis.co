@@ -7,6 +7,7 @@ import { Customer } from './User/Customer'
 import { Injectable } from "@angular/core";
 import { Storage } from '@ionic/storage';
 import { ToastController } from "ionic-angular";
+import { Observable } from "@firebase/util";
 
 @Injectable()
 export class FirebaseUserAuth {
@@ -46,6 +47,12 @@ export class FirebaseUserAuth {
         }
         
         return await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+    }
+
+    public checkAuth(){
+        return this.afAuth.authState.map((data)=>{
+            return data;
+        })
     }
 
     
