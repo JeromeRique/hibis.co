@@ -17,7 +17,7 @@ import { FirebaseUserAuth } from '../../models/FirebaseUserAuth';
   templateUrl: 'vendor-details.html',
 })
 export class VendorDetailsPage {
-  vendor: any;
+  vendor: { title: string, owner: string, categories: any, obj: any, key: any };
   products: any;
   display_pic: string;
   icon: string[];
@@ -66,7 +66,7 @@ export class VendorDetailsPage {
       return this.icon[2];
     }
   }
-  
+
   favorite(){
     console.log(this.vendor);
     // let vendorData = {
@@ -75,7 +75,11 @@ export class VendorDetailsPage {
     this.firebaseAuth.checkAuth().subscribe((data)=>{
       if (data!= null){
         let ref = this.afdb.list('favorites/'+ data.uid +'/');
-        ref.set("vendor", this.vendor);
+        const item = {
+          title: this.vendor.title,
+          owner: this.vendor.owner
+        };
+        ref.set(item);
       }
     })
 

@@ -38,7 +38,7 @@ export class FavoritesPage {
   populateFavorites () {
     this.afauth.checkAuth().subscribe((data) => {
       if (data != null) {
-        console.log(data);
+        //console.log(data);
         let ref = this.afdb.object('favorites/');
         ref.snapshotChanges().subscribe((changes) => {
           if (changes.payload.hasChild(data.uid)) {
