@@ -37,6 +37,7 @@ export class LoginPage {
     let result;
     try { 
       result = this.auth.login(user);
+      this.auth.currentUser();
     } catch (e) {
       this.toast.create({
         message: 'Could not authenticate.',
@@ -44,6 +45,7 @@ export class LoginPage {
       }).present();
     }
     if (result) {
+      console.log("lol")
       this.navCtrl.setRoot(HomePage)
     }
   }

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>favorites</ion-title>
+    <ion-title>Favorites</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,14 +15,12 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let f of favorites" (click)="itemTapped($event, f)">
+    <button ion-item *ngFor="let f of favorites">
       {{f.title}}
       <div class="item-note" item-end>
-        <p *ngFor="let c of f.categories">
-          <ion-icon [name]='c'></ion-icon>
-        </p>
+        
       </div>
-      <p>{{f.desc}}</p>
+      <p>{{f.owner}}</p>
     </button>
 </ion-list>
 </ion-content>

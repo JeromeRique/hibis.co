@@ -36,15 +36,7 @@ export class FirebaseUserAuth {
      */
     async login(user: User) {
         // Determine User Type
-        try {
-            let uid = this.afAuth.auth.currentUser.uid;
-            let ref = this.afdb.database.ref('users/' + uid);
-            ref.on('value', snap => {
-                this.currUser.type = snap.val().type;
-            });
-        } catch (e) {
-            return e;
-        }
+        
         
         return await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
     }
@@ -55,7 +47,17 @@ export class FirebaseUserAuth {
         })
     }
 
-    
+    public currentUser(){
+        try {
+            let uid = this.afAuth.auth.currentUser.uid;
+            let ref = this.afdb.database.ref('users/' + uid);
+            ref.on('value', snap => {
+                this.currUser.type = snap.val().type;
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     /**
      * This function takes in a User as an object, 
@@ -99,30 +101,30 @@ export class FirebaseUserAuth {
     }
 
     updateUserSettings(user) {
-        let acc = this.afAuth.auth.currentUser;
-        let ref = this.afdb.database.ref('users/' + acc.uid);
-        if (user.name != "") {
-            try {
-                ref.child('name').set(user.name);
-            } catch (e) {
-                return e;
-            }
-        }
-        if (user.email != "") {
-            try {
-                ref.child('email').set(user.email);
-                acc.updateEmail(user.email).then().catch(function (e) {return e});
-            } catch (e) {
-                return e;
-            }
-        }
-        if (user.password != "") {
-            try {
-                acc.updatePassword(user.password).then().catch(function(e) {return e});
-            } catch (e) {
-                return e;
-            }
-        }
+        // let acc = this.afAuth.auth.currentUser;
+        // let ref = this.afdb.database.ref('users/' + acc.uid);
+        // if (user.name != "") {
+        //     try {
+        //         ref.child('name').set(user.name);
+        //     } catch (e) {
+        //         return e;
+        //     }
+        // }
+        // if (user.email != "") {
+        //     try {
+        //         ref.child('email').set(user.email);
+        //         acc.updateEmail(user.email).then().catch(function (e) {return e});
+        //     } catch (e) {
+        //         return e;
+        //     }
+        // }
+        // if (user.password != "") {
+        //     try {
+        //         acc.updatePassword(user.password).then().catch(function(e) {return e});
+        //     } catch (e) {
+        //         return e;
+        //     }
+        // }
     }
 
     deleteAccount () {

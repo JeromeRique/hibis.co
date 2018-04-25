@@ -66,6 +66,7 @@ export class VendorDetailsPage {
       return this.icon[2];
     }
   }
+  
   favorite(){
     console.log(this.vendor);
     // let vendorData = {

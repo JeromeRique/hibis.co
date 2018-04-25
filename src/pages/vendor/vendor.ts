@@ -29,7 +29,6 @@ export class VendorPage {
     this.selectedVendor = navParams.get('vendor');
     this.icon = ['flame', 'leaf', 'cart'];
     this.vendors = [];
-
   }
 
   ionViewDidLoad() {
