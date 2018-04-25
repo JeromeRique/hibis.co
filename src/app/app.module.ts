@@ -20,6 +20,7 @@ import { VendorDetailsPage } from '../pages/vendor-details/vendor-details';
 import { CustomerSettingsPage } from '../pages/customer-settings/customer-settings';
 import { VendorSettingsPage } from '../pages/vendor-settings/vendor-settings';
 import { CurrentUser } from '../models/CurrentUser';
+import { CallNumber } from '@ionic-native/call-number';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { CurrentUser } from '../models/CurrentUser';
     SplashScreen,
     FirebaseUserAuth,
     CurrentUser,
+    CallNumber,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

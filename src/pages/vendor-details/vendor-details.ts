@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FirebaseUserAuth } from '../../models/FirebaseUserAuth';
+import { CallNumber } from '@ionic-native/call-number';
 
 /**
  * Generated class for the VendorDetailsPage page.
@@ -25,6 +26,8 @@ export class VendorDetailsPage {
 
   constructor(
     private afdb: AngularFireDatabase,
+    private call: CallNumber,
+    private toast: ToastController,
     public navCtrl: NavController,
     public firebaseAuth: FirebaseUserAuth,
     public afauth: AngularFireAuth,
@@ -42,6 +45,19 @@ export class VendorDetailsPage {
     console.log('ionViewDidLoad VendorDetailsPage');
     this.isFavorite();
     this.populateProducts();
+    
+  }
+
+  async callNumber():Promise <any> {
+    try {
+      await this.call.callNumber(this.vendor.obj.phone,true);
+    } catch (e) {
+      console.log(e);
+      this.toast.create({
+        message: 'Could not place the call.',
+        duration: 1000
+      }).present();
+    }
   }
 
   populateProducts() {
