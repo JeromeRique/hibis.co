@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FirebaseUserAuth } from '../../models/FirebaseUserAuth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { VendorDetailsPage } from '../vendor-details/vendor-details';
 /**
  * Generated class for the FavoritesPage page.
  *
@@ -15,45 +16,51 @@ import { AngularFireDatabase } from 'angularfire2/database';
   templateUrl: 'favorites.html',
 })
 export class FavoritesPage {
-  
-  favorites: Array<{ title: string, owner: string }>;
+
+  favorites: Array<{ title: string, owner: string, categories: any, obj: any, key: any }>;
 
   constructor(
     private afauth: FirebaseUserAuth,
     private afdb: AngularFireDatabase,
-    public navCtrl: NavController, 
-    public navParams: NavParams) 
-    
-    {
-      this.favorites = []; //Initializing vendor array
-      
-    }
+    public navCtrl: NavController,
+    public navParams: NavParams) {
+    this.favorites = []; //Initializing vendor array
 
-    
+  }
 
   ionViewDidLoad() {
     this.populateFavorites();
   }
 
-  populateFavorites () {
+  populateFavorites() {
     this.afauth.checkAuth().subscribe((data) => {
       if (data != null) {
-        //console.log(data);
-        let ref = this.afdb.object('favorites/');
-        ref.snapshotChanges().subscribe((changes) => {
-          if (changes.payload.hasChild(data.uid)) {
-            //console.log("Show favorites for "+ data.uid);
-            changes.payload.forEach((vendor) => {
-              //console.log(vendor.val());
-              this.favorites.push({
-                title: vendor.val().title,
-                owner: vendor.val().owner,
-              });
-              return true;
-            });
-          }
-        });
+        let ref = this.afdb.database.ref('favorites/' + data.uid);
+        ref.on('child_added', (snap) => {
+          this.getFavorites(snap.key);
+        })
       }
     });
+  }
+
+  itemTapped(event, vendor) {
+    this.navCtrl.push(VendorDetailsPage, {
+      vendor: vendor
+    });
+  }
+
+  getFavorites (key: any) {
+    let ref = this.afdb.database.ref('users/');
+    ref.on('child_added', snap => {
+      if (snap.key === key) {
+        this.favorites.push({
+          title: snap.val().name,
+          owner: snap.val().owner,
+          categories: 0,
+          obj: snap.val(),
+          key: snap.key
+        });
+      }
+    })
   }
 }

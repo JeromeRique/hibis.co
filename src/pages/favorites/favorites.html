@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let f of favorites">
+    <button ion-item *ngFor="let f of favorites" (click)="itemTapped($event, f)">
       {{f.title}}
       <div class="item-note" item-end>
         
