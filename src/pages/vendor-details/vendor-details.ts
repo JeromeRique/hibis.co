@@ -21,6 +21,7 @@ export class VendorDetailsPage {
   products: any;
   display_pic: string;
   icon: string[];
+  favorite: boolean;
 
   constructor(
     private afdb: AngularFireDatabase,
@@ -33,11 +34,14 @@ export class VendorDetailsPage {
     this.icon = ['flame', 'leaf', 'cart'];
     this.display_pic = 'assets/imgs/lettuce.jpg';
     this.vendor = navParams.get('vendor');
-    this.populateProducts();
+    this.favorite = false;
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VendorDetailsPage');
+    this.isFavorite();
+    this.populateProducts();
   }
 
   populateProducts() {
@@ -67,21 +71,49 @@ export class VendorDetailsPage {
     }
   }
 
-  favorite(){
-    console.log(this.vendor);
-    // let vendorData = {
-    //   "vendor": this.vendor
-    // }
-    this.firebaseAuth.checkAuth().subscribe((data)=>{
-      if (data!= null){
-        let ref = this.afdb.list('favorites/'+ data.uid +'/');
-        const item = {
-          title: this.vendor.title,
-          owner: this.vendor.owner
-        };
-        ref.set(item);
-      }
-    })
+  /**
+   * This function is fired to set the current Vendor to be a 
+   * favorite of the current logged in User.
+   */
+  addFavorite(){
+    if (this.favorite) {
+      this.firebaseAuth.checkAuth().subscribe((data)=>{
+        if (data!=null){
+          let ref = this.afdb.database.ref('favorites/'+ data.uid);
+          ref.child(this.vendor.key).remove();
+        }
+      });
+      this.favorite = false;
+    } else {
+      this.firebaseAuth.checkAuth().subscribe((data)=>{
+        if (data!= null){
+          let ref = this.afdb.database.ref('favorites/'+data.uid+'/' + this.vendor.key).set({
+              name: this.vendor.title,
+              owner: this.vendor.owner
+          });
+        }
+      });
+      this.favorite = true;
+    }
 
+  }
+
+  /**
+   * This function is fired to initialize the favorite button, 
+   * whether the current vendor is favorited or not.
+   */
+  isFavorite() {
+    this.firebaseAuth.checkAuth().subscribe((data) => {
+      if (data!=null) {
+        let ref = this.afdb.database.ref('favorites/'+ data.uid);
+        ref.once('value', (snap) => {
+          if (snap.hasChild(this.vendor.key)) {
+            this.favorite = true;
+          } else {
+            this.favorite = false;
+          }
+        });
+      }
+    });
   }
 }

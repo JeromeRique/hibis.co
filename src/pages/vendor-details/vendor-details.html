@@ -14,11 +14,27 @@
 
 
 <ion-content text-center>
+  <!-- Header Image -->
   <ion-img width="100%" height="100px" [src]="display_pic"></ion-img>
-  <h1>{{vendor.owner}}</h1><button (click)="favorite()"><ion-icon ios="ios-star-outline" md="md-star-outline"></ion-icon></button>
+  <!-- Vendor Detail Owner -->
+  <h1>{{vendor.owner}}
+      <ion-icon *ngIf="this.favorite == true" end color="energised" name="star" (click)="addFavorite()"></ion-icon>
+      <ion-icon *ngIf="this.favorite == false" end color="energised" name="star-outline" (click)="addFavorite()"></ion-icon>
+  </h1>
+  <!-- Vendor Detail Favorite Button -->
+  
+  <!-- Vendor Detail Contact Buttons -->
+  <button ion-button> <ion-icon name='call'></ion-icon></button>
+  <button ion-button> <ion-icon name='mail'></ion-icon></button>
+  
+
+  <!-- Vendor Detail Product List -->
   <ion-list>
     <ion-item>
-      <h3>Products</h3>
+      <h3>Product Catalog</h3>
+    </ion-item>
+    <ion-item *ngIf="products.length == 0" text-wrap>
+      This vendor has not yet added any products to their catalog.
     </ion-item>
     <ion-item *ngFor="let p of products">
       {{p.title}}
