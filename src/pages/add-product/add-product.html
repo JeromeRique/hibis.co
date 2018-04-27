@@ -1,0 +1,39 @@
+<!--
+  Generated template for the AddProductPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Add Product</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (submit)="add()">
+    <ion-list>
+      <ion-label >Product Name</ion-label>
+      <ion-item>
+        <ion-input name="title" [(ngModel)]="product.title" placeholder="Apples"></ion-input>
+      </ion-item>
+      <ion-label >Product Category</ion-label>
+      <ion-item>
+        <ion-select name="category" [(ngModel)]="product.category">
+          <ion-option value="Produce">Produce</ion-option>
+          <ion-option value="Foodies">Foodies</ion-option>
+          <ion-option value="Craft">Artisan Craft</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-footer>
+      <button ion-button full type="submit">Add</button>
+    </ion-footer>
+  </form>
+</ion-content>

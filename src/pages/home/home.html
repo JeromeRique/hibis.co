@@ -7,12 +7,57 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <!-- <h3>Ionic Menu Starter</h3>
+<ion-content padding class="has-header">
+  <!-- Slider 1 -->
+  <ion-slides full pager="true">
+    <ion-slide *ngFor = "let slide of slider">
+      <ion-card>
+        <img [src]="slide.img" alt="slide.desc">
+        <div class="card-title" [innerHTML]="slide.title"></div>
+        <div class="card-subtitle" [innerHTML]="slide.desc"></div>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <!-- End Slide-->
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <div style="text-align:justified;">
+    <p>Enjoy the ambience of the lush Santa Cruz Valley. 
+      Taste and savour delicious local food. Meet the 
+      people who grow your food as well as your friends 
+      and family. Experience the creativity of local artisans.</p>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button> -->
+    <p>Improve your quality of life.</p>
+  </div>
+  
+  <button ion-button full round color="primary" (click)="navCtrl.push('AboutPage')">Learn More</button>
+  
+  <!-- Slider 2 -->
+  <ion-slides full pager="true">
+    <ion-slide *ngFor = "let slide of slider">
+      <ion-card>
+        <img [src]="slide.img" alt="slide.desc">
+        <div class="card-title" [innerHTML]="slide.title"></div>
+        <div class="card-subtitle" [innerHTML]="slide.desc"></div>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <!-- End Slide-->
+  
+  <div style="text-align:center;">
+    <p>Some Caribbean Quotes.</p>
+  </div>
+  
+  <div text-center>
+    <button ion-button color="primary" (click)="navCtrl.push('InstagramPage')">
+      <ion-icon name="logo-instagram"></ion-icon>
+    </button>
+    <button ion-button color="secondary" (click)="navCtrl.push('ContactPage')">
+      <ion-icon name="call"></ion-icon>
+    </button>
+  </div>
+  
 </ion-content>
+
+<!-- Comment
+<button ion-button secondary menuToggle>Toggle Menu</button>
+-->

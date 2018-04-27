@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Vendors</ion-title>
+    <ion-buttons end> 
+      <button ion-button  (click)="navCtrl.push('FavoritesPage')">
+        <ion-icon name="star" ></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+  <!-- <ion-toolbar>
+    <ion-searchbar placeholder="Search"
+      [(ngModel)]="queryVendor"
+      (ionInput)="updateVendors()">
+
+
+    </ion-searchbar>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content>
+  <ion-list>
+      <button ion-item *ngFor="let v of vendors" (click)="itemTapped($event, v)">
+        {{v.title}}
+        <div class="item-note" item-end>
+          <!--<p *ngFor="let c of v.categories">
+            <ion-icon [name]='c'></ion-icon>
+          </p>-->
+        </div>
+        <p>{{v.desc}}</p>
+      </button>
+  </ion-list>
+</ion-content>

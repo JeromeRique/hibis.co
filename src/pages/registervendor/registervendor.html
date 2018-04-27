@@ -1,0 +1,45 @@
+<!--
+  Generated template for the RegistervendorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Vendor Registration</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-item>
+    <ion-label floating>Vendor Name</ion-label>
+    <ion-input type="text" [(ngModel)]="name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Full Name</ion-label>
+    <ion-input type="text" [(ngModel)]="owner"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Phone</ion-label>
+    <ion-input type="tel" [(ngModel)]="phone"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Email</ion-label>
+    <ion-input type="email" [(ngModel)]="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Password</ion-label>
+    <ion-input type="password" [(ngModel)]="password1"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-label floating>Confirm Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password2"></ion-input>
+    </ion-item>
+
+  <button ion-button large full (click)="register(user)">Register</button>
+
+</ion-content>

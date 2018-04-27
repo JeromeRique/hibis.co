@@ -11,6 +11,17 @@
         {{p.title}}
       </button>
     </ion-list>
+    <ion-footer class="bar-stable">
+      <ion-list>
+        <ion-item>
+          <ion-icon menuClose id="social-menu-fb" name="logo-facebook"></ion-icon>
+          <ion-icon menuClose id="social-menu-ig" name="logo-instagram"></ion-icon>
+          <button menuClose ion-item (click)="nav.push('SocialPage')">Social</button>
+          <button menuClose ion-item (click)="logout()">Logout</button>
+          <p style="text-align:center;">Version 0.4.2</p>
+        </ion-item>  
+      </ion-list>
+    </ion-footer>
   </ion-content>
 
 </ion-menu>

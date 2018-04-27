@@ -1,0 +1,48 @@
+<!--
+  Generated template for the VendorSettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>VendorSettings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (submit)="updateSettings()">
+    
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Update Full Name</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Update Email</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Update Password</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          Add Product
+          <button id="product-add" ion-button circle color="primary" (click)="openModal()">
+            <ion-icon  color="light" name="add"></ion-icon>
+          </button>
+        </ion-label>
+      </ion-item>
+      <button ion-item *ngFor="let p of products">
+        {{p.title}}
+      </button>
+
+      <button ion-button type="submit" block >Save</button>
+    </ion-list>
+
+  </form>
+</ion-content>

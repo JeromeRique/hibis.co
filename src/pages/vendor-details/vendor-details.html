@@ -1,0 +1,45 @@
+<!--
+  Generated template for the VendorDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{vendor.title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content text-center>
+  <!-- Header Image -->
+  <ion-img width="100%" height="100px" [src]="display_pic"></ion-img>
+  <!-- Vendor Detail Owner -->
+  <h1>{{vendor.owner}}
+      <ion-icon *ngIf="this.favorite == true" end color="energised" name="star" (click)="addFavorite()"></ion-icon>
+      <ion-icon *ngIf="this.favorite == false" end color="energised" name="star-outline" (click)="addFavorite()"></ion-icon>
+  </h1>
+  <!-- Vendor Detail Favorite Button -->
+  
+  <!-- Vendor Detail Contact Buttons -->
+  <button ion-button (click)="callNumber()"> <ion-icon name='call'></ion-icon></button>
+  <button ion-button> <ion-icon name='mail'></ion-icon></button>
+  
+
+  <!-- Vendor Detail Product List -->
+  <ion-list>
+    <ion-item>
+      <h3>Product Catalog</h3>
+    </ion-item>
+    <ion-item *ngIf="products.length == 0" text-wrap>
+      This vendor has not yet added any products to their catalog.
+    </ion-item>
+    <ion-item *ngFor="let p of products">
+      {{p.title}}
+      <ion-icon [name]="p.icon" item-end></ion-icon>
+      <p>{{p.category}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

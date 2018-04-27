@@ -1,0 +1,64 @@
+<!--
+  Generated template for the ContactPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Contact</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="has-header">
+  <h3>Opening Hours</h3>
+  <p><strong>Saturdays</strong> are our farmer's produce day.</p>
+  <p><strong>Sundays</strong> are for our food lovers.</p>
+
+
+  <!-- CTA Contact Form -->
+  <ion-list id="cta-form"> Contact Form
+    <ion-item>
+      <ion-label floating>Name</ion-label>
+      <ion-input type="text" aria-placeholder="John Buck"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" aria-placeholder="jobu@me.com"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Subject</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Message</ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox [(ngModel)]="subscriber"></ion-checkbox>
+      <ion-label>Subscribe to our newsletter.</ion-label>
+    </ion-item>
+  </ion-list>
+  <button ion-button full>Submit</button>
+  <!-- End Contact Form -->
+
+  <!-- Final contact mention -->
+  <div class="row">
+    <div class="col" text-center>
+      <img src="../../assets/imgs/logo.png" alt="San Antonio Green Market">
+    </div>
+    <div class="col" text-justified>
+      <p><strong>San Antonio Green Market</strong></p>
+      <p>Upper Saddle Road,</p>
+      <p>Santa Cruz</p>
+      <a href="tel:+(868)221-9116">(868) 221-9116</a>
+      <a href="mailto:sagmtt@gmail.com">sagmtt@gmail.com</a>
+    </div>
+  </div>
+  <div #map id="map">
+  </div>
+  <!-- End Contact Page -->
+</ion-content>
