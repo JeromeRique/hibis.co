@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>VendorSettings</ion-title>
   </ion-navbar>
 
@@ -18,19 +18,19 @@
     
     <ion-list>
       <ion-item>
-        <ion-label floating>Update Full Name</ion-label>
+        <ion-label floating class="tab">Update Full Name</ion-label>
         <ion-input></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>Update Email</ion-label>
+        <ion-label floating class="tab">Update Email</ion-label>
         <ion-input></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label floating>Update Password</ion-label>
+        <ion-label floating class="tab">Update Password</ion-label>
         <ion-input></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>
+        <ion-label class="tab">
           Add Product
           <button id="product-add" ion-button circle color="primary" (click)="openModal()">
             <ion-icon  color="light" name="add"></ion-icon>

@@ -17,7 +17,7 @@
   <!-- Header Image -->
   <ion-img width="100%" height="100px" [src]="display_pic"></ion-img>
   <!-- Vendor Detail Owner -->
-  <h1>{{vendor.owner}}
+  <h1 class="tab">{{vendor.owner}}
       <ion-icon *ngIf="this.favorite == true" end color="energised" name="star" (click)="addFavorite()"></ion-icon>
       <ion-icon *ngIf="this.favorite == false" end color="energised" name="star-outline" (click)="addFavorite()"></ion-icon>
   </h1>
@@ -31,24 +31,26 @@
   <!-- Vendor Detail Product List -->
   <ion-list>
     <ion-item>
-      <h3>Product Catalog</h3>
+      <h3 class="tab">Product Catalog</h3>
     </ion-item>
     <ion-item *ngIf="products.length == 0" text-wrap>
-      This vendor has not yet added any products to their catalog.
+      <p class="tab">This vendor has not yet added any products to their catalog.</p>
     </ion-item>
     <ion-item *ngFor="let p of products">
-      {{p.title}}
+      <h1 class="tab">{{p.title}}</h1>
       <ion-icon [name]="p.icon" item-end></ion-icon>
-      <p>{{p.category}}</p>
+      <p class="tab">{{p.category}}</p>
     </ion-item>
   </ion-list>
   <div class="d">
-    <ion-icon name="thumbs-up" (click)="upVote()" class="like"></ion-icon>
-    <label class="like">{{uv}}</label>
-  </div>
-  <div class="d">
-    <ion-icon name="thumbs-down" (click)="downVote()" class="dislike"></ion-icon>
-    <label class="dislike">{{dv}}</label>
+    <ion-item class="like">
+        <ion-icon name="thumbs-up" (click)="upVote()" ></ion-icon>
+        <label >{{uv}}</label>
+    </ion-item>
+    <ion-item class="dislike">
+        <ion-icon name="thumbs-down" (click)="downVote()"></ion-icon>
+        <label >{{dv}}</label>
+    </ion-item>
   </div>
   
 </ion-content>

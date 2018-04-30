@@ -22,7 +22,7 @@
 
 <ion-content>
   <ion-list>
-      <button ion-item *ngFor="let v of vendors" (click)="itemTapped($event, v)">
+      <button ion-item *ngFor="let v of vendors" (click)="itemTapped($event, v)" class="tab">
         {{v.title}}
         <div class="item-note" item-end>
           <!--<p *ngFor="let c of v.categories">

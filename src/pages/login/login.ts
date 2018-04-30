@@ -45,7 +45,6 @@ export class LoginPage {
       }).present();
     }
     if (result) {
-      console.log("lol")
       this.navCtrl.setRoot(HomePage)
     }
   }

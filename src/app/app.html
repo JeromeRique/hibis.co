@@ -7,7 +7,7 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" class="tab">
         {{p.title}}
       </button>
     </ion-list>
@@ -16,8 +16,8 @@
         <ion-item>
           <ion-icon menuClose id="social-menu-fb" name="logo-facebook"></ion-icon>
           <ion-icon menuClose id="social-menu-ig" name="logo-instagram"></ion-icon>
-          <button menuClose ion-item (click)="nav.push('SocialPage')">Social</button>
-          <button menuClose ion-item (click)="logout()">Logout</button>
+          <button menuClose ion-item (click)="nav.push('SocialPage')" class="tab">Social</button>
+          <button menuClose ion-item (click)="logout()" class="tab">Logout</button>
           <p style="text-align:center;">Version 0.4.2</p>
         </ion-item>  
       </ion-list>

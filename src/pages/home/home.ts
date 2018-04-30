@@ -62,7 +62,7 @@ export class HomePage {
           };
           //console.log(venKey);
           //let ven = this.getVendor(venKey);
-          //console.log(p);
+          console.log(p);
           if(p.url!= undefined){
             let currentData = {
               url: p.url,

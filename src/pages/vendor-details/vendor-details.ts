@@ -156,6 +156,8 @@ export class VendorDetailsPage {
       this.dv = votes['down-votes'];
       this.uv = votes['up-votes'];
     })
+    console.log(this.dv);
+    console.log(this.uv);
 
   }
   downVote(){
