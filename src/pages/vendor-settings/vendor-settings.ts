@@ -46,12 +46,11 @@ export class VendorSettingsPage {
 
     prodmod.onDidDismiss((p) => {
       this.toast.create({
-        message: 'Successfully added ' + p.data.title,
+        message: 'Successfully added product',
         duration: 1000
       }).present();
     })
   }
-
   populateProducts () {
     try {
       let uid = this.afAuth.auth.currentUser.uid;

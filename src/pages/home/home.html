@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -7,45 +7,51 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="has-header">
+<ion-content padding class="has-header" class="back">
+  <h2 class="heading">Food & Produce</h2>
   <!-- Slider 1 -->
   <ion-slides full pager="true">
     <ion-slide *ngFor = "let slide of slider">
       <ion-card>
-        <img [src]="slide.img" alt="slide.desc">
-        <div class="card-title" [innerHTML]="slide.title"></div>
-        <div class="card-subtitle" [innerHTML]="slide.desc"></div>
+
+        <!-- <img [src]="slide.img" alt="slide.desc"> -->
+        <label>Click image to go to vendor's profile</label>
+        <img src="{{slide.url}}" alt="myImage" (click)="goToVenderDetails(slide.key)"/>
+        <div class="card-title"></div>
+        <div class="card-subtitle"></div>
       </ion-card>
     </ion-slide>
   </ion-slides>
   <!-- End Slide-->
 
-  <div style="text-align:justified;">
-    <p>Enjoy the ambience of the lush Santa Cruz Valley. 
-      Taste and savour delicious local food. Meet the 
-      people who grow your food as well as your friends 
-      and family. Experience the creativity of local artisans.</p>
-
-    <p>Improve your quality of life.</p>
-  </div>
-  
-  <button ion-button full round color="primary" (click)="navCtrl.push('AboutPage')">Learn More</button>
-  
+  <h2 class="heading">Artisan Crafts</h2>
   <!-- Slider 2 -->
   <ion-slides full pager="true">
-    <ion-slide *ngFor = "let slide of slider">
+    <ion-slide *ngFor = "let slide of slider2">
       <ion-card>
-        <img [src]="slide.img" alt="slide.desc">
-        <div class="card-title" [innerHTML]="slide.title"></div>
-        <div class="card-subtitle" [innerHTML]="slide.desc"></div>
+        <label>Click image to go to vendor's profile</label>
+        <img src="{{slide.url}}" alt="myImage" (click)="goToVenderDetails(slide.key)">
+        <div class="card-title" [innerHTML]="slide.title"> click</div>
+        <div class="card-subtitle" [innerHTML]="slide.desc"> click </div>
       </ion-card>
     </ion-slide>
   </ion-slides>
   <!-- End Slide-->
   
-  <div style="text-align:center;">
+  <div style="text-align:justified;">
+      <p>Enjoy the ambience of the lush Santa Cruz Valley. 
+        Taste and savour delicious local food. Meet the 
+        people who grow your food as well as your friends 
+        and family. Experience the creativity of local artisans.</p>
+  
+      <p>Improve your quality of life.</p>
+    </div>
+    
+  <button ion-button full round color="primary" (click)="navCtrl.push('AboutPage')">Learn More</button>
+    
+  <!-- <div style="text-align:center;">
     <p>Some Caribbean Quotes.</p>
-  </div>
+  </div> -->
   
   <div text-center>
     <button ion-button color="primary" (click)="navCtrl.push('InstagramPage')">

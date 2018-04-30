@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FirebaseUserAuth } from '../../models/FirebaseUserAuth';
-import { CallNumber } from '@ionic-native/call-number';
+//import { CallNumber } from '@ionic-native/call-number';
 
 /**
  * Generated class for the VendorDetailsPage page.
@@ -23,10 +23,11 @@ export class VendorDetailsPage {
   display_pic: string;
   icon: string[];
   favorite: boolean;
-
+  dv: string;
+  uv: string;
   constructor(
     private afdb: AngularFireDatabase,
-    private call: CallNumber,
+    //private call: CallNumber,
     private toast: ToastController,
     public navCtrl: NavController,
     public firebaseAuth: FirebaseUserAuth,
@@ -38,27 +39,28 @@ export class VendorDetailsPage {
     this.display_pic = 'assets/imgs/lettuce.jpg';
     this.vendor = navParams.get('vendor');
     this.favorite = false;
-    
+    this.dv = '0';
+    this.uv = '0';
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad VendorDetailsPage');
     this.isFavorite();
     this.populateProducts();
-    
+    this.checkRate();
   }
 
-  async callNumber():Promise <any> {
-    try {
-      await this.call.callNumber(this.vendor.obj.phone,true);
-    } catch (e) {
-      console.log(e);
-      this.toast.create({
-        message: 'Could not place the call.',
-        duration: 1000
-      }).present();
-    }
-  }
+  // async callNumber():Promise <any> {
+  //   try {
+  //     await this.call.callNumber(this.vendor.obj.phone,true);
+  //   } catch (e) {
+  //     console.log(e);
+  //     this.toast.create({
+  //       message: 'Could not place the call.',
+  //       duration: 1000
+  //     }).present();
+  //   }
+  // }
 
   populateProducts() {
     try {
@@ -113,7 +115,6 @@ export class VendorDetailsPage {
     }
 
   }
-
   /**
    * This function is fired to initialize the favorite button, 
    * whether the current vendor is favorited or not.
@@ -131,5 +132,48 @@ export class VendorDetailsPage {
         });
       }
     });
+  }
+  checkRate(){
+    let ref = this.afdb.database.ref('votes/');
+    ref.once('value', (snap)=>{
+      if(snap.hasChild(this.vendor.key))
+        this.getRate()
+      else
+        this.setRate();
+    })
+  }
+  setRate(){
+    let ref = this.afdb.database.ref('votes/' +this.vendor.key)
+    ref.set({
+      'up-votes': 0,
+      'down-votes': 0
+    })
+  }
+  getRate(){
+    let ref = this.afdb.database.ref('votes/'+ this.vendor.key)
+    ref.on('value', (snap)=>{
+      let votes = snap.val();
+      this.dv = votes['down-votes'];
+      this.uv = votes['up-votes'];
+    })
+
+  }
+  downVote(){
+    let ref = this.afdb.database.ref('votes/' +this.vendor.key+ '/down-votes')
+    ref.once('value', (snap)=>{
+      let dv = snap.val();
+      console.log(dv)
+      dv++;
+      ref.set(dv);
+    })
+  }
+  upVote(){
+    let ref = this.afdb.database.ref('votes/' +this.vendor.key+ '/up-votes')
+    ref.once('value', (snap)=>{
+      let uv = snap.val();
+      console.log(uv)
+      uv++;
+      ref.set(uv);
+    })
   }
 }

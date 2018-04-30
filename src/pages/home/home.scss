@@ -1,34 +1,53 @@
 page-home {
     
-}
+    // .back{
+    //     background-color: #DDA0DD;
+    // }
+    ion-slides {
+        height: auto;
+        width: 100%;
+        
+    }
 
-ion-slides {
-    height: auto;
-    width: 100%;
-}
+    ion-slide {
+        padding-bottom: 20px;
+    }
 
-ion-slide {
-    padding-bottom: 20px;
-}
+    ion-card {
+        position: relative;
+        text-align: center;
+    }
 
-ion-card {
-    position: relative;
-    text-align: center;
-}
+    .card-title {
+        position: absolute;
+        top: 36%;
+        font-size: 2.0em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+    }
 
-.card-title {
-    position: absolute;
-    top: 36%;
-    font-size: 2.0em;
-    width: 100%;
-    font-weight: bold;
-    color: #fff;
-}
-
-.card-subtitle {
-    font-size: 1.0em;
-    position: absolute;
-    top: 52%;
-    width: 100%;
-    color: #fff;
+    .card-subtitle {
+        font-size: 1.0em;
+        position: absolute;
+        top: 52%;
+        width: 100%;
+        color: #fff;
+    }
+    .heading{
+        text-align: center;
+        color:  #32db64;
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+    }
+    p{
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+        font-size: 17px;
+    }
+    label{
+        font-family: 'Times New Roman', Times, serif;
+        font-style: italic;
+        font-size: 13px;
+    }
 }

@@ -24,8 +24,8 @@
   <!-- Vendor Detail Favorite Button -->
   
   <!-- Vendor Detail Contact Buttons -->
-  <button ion-button (click)="callNumber()"> <ion-icon name='call'></ion-icon></button>
-  <button ion-button> <ion-icon name='mail'></ion-icon></button>
+  <button ion-button (click)="callNumber()" disabled> <ion-icon name='call'></ion-icon></button>
+  <button ion-button disabled> <ion-icon name='mail'></ion-icon></button>
   
 
   <!-- Vendor Detail Product List -->
@@ -42,4 +42,13 @@
       <p>{{p.category}}</p>
     </ion-item>
   </ion-list>
+  <div class="d">
+    <ion-icon name="thumbs-up" (click)="upVote()" class="like"></ion-icon>
+    <label class="like">{{uv}}</label>
+  </div>
+  <div class="d">
+    <ion-icon name="thumbs-down" (click)="downVote()" class="dislike"></ion-icon>
+    <label class="dislike">{{dv}}</label>
+  </div>
+  
 </ion-content>

@@ -31,6 +31,20 @@
           <ion-option value="Craft">Artisan Craft</ion-option>
         </ion-select>
       </ion-item>
+      <ion-label>Product Image</ion-label>
+      <ion-item>
+        <div *ngIf = "currentUpload">
+          <div class = "progress">
+            <div class= "progress-bar progress-bar-animated" [ngStyle] = "{'width': currentUpload?.progress + '%'}"></div>
+          </div>
+          Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+        </div>
+        <label>
+          <input type = "file" (change) = "detectFiles($event)">
+        </label>
+      </ion-item>
+
+
     </ion-list>
     <ion-footer>
       <button ion-button full type="submit">Add</button>

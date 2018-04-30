@@ -5,6 +5,6 @@ export class CurrentUser {
     public type: string;
 
     constructor() {
-        
+        this.type = "";
     }
 }

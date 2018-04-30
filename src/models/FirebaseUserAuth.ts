@@ -25,6 +25,7 @@ export class FirebaseUserAuth {
     }
 
     logout() {
+        this.currUser.type = "";
         return this.afAuth.auth.signOut();
     }
 

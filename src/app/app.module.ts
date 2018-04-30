@@ -20,7 +20,10 @@ import { VendorDetailsPage } from '../pages/vendor-details/vendor-details';
 import { CustomerSettingsPage } from '../pages/customer-settings/customer-settings';
 import { VendorSettingsPage } from '../pages/vendor-settings/vendor-settings';
 import { CurrentUser } from '../models/CurrentUser';
-import { CallNumber } from '@ionic-native/call-number';
+import { UploadFileService } from '../pages/add-product/upload';
+import { imgArr } from '../pages/imgArr';
+//import { CallNumber } from '@ionic-native/call-number';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +43,7 @@ import { CallNumber } from '@ionic-native/call-number';
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -57,7 +60,9 @@ import { CallNumber } from '@ionic-native/call-number';
     SplashScreen,
     FirebaseUserAuth,
     CurrentUser,
-    CallNumber,
+    UploadFileService,
+    imgArr,
+    //CallNumber,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
